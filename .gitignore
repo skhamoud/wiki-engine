@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
@@ -55,4 +54,5 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
->>>>>>> 0ad6c87755078e2bc2657276ea40e05ed108829e
+
+.vscode
