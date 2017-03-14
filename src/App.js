@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react'
+import {Route, Link} from 'react-router-dom'
+import SearchComponent from './components/SearchComponent';
 import Articles from './components/Articles';
 import Api from "./api";
+import SearchButton from './components/SearchButton.jsx';
+// Assets 
 import logo from './logo.svg';
+import bgImage from './assets/books.jpg' ;
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,35 +17,72 @@ class App extends Component {
       extracts:[] ,
       urls:[]
     };
+    this.getArticles = this.getArticles.bind(this);
   }
-  componentWillMount() {
-    // Api.wikiSearch('obama').then(data => {
-    //   this.setState(data);
-    //   console.log(this.state);
-    // });
-    // while offline use dummyData
-    let data = Api.dummyData;
-    this.setState({
-      titles: data[1],
-      extracts: data[2],
-      urls: data[3]
+  // Custom Functions
+  getArticles(term) {
+    Api.wikiSearch(term).then(data => {
+      this.setState({
+        titles: data[1],
+        extracts: data[2],
+        urls: data[3]
+      });
+      console.log(this.state);
     });
+  }
+
+  // Lifecycle components 
+  componentWillMount() {
+    // while offline use dummyData
+
+    // let data = Api.dummyData;
+    // this.setState({
+    //   titles: data[1],
+    //   extracts: data[2],
+    //   urls: data[3]
+    // });
+  }
+  componentDidMount() {
+    
+  }
+  componentDidUpdate() {
+    
   }
   render() {
     const data = this.state;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div className="App">
+          <Route exact path='/' component={Home}/>
+          <Route path='/search' component={SearchComponent} />
+          <Route path="/articles" component={Articles} />
         </div>
         
-        {/* Search results */}
-        <Articles data={data} />
+        //  {/*Search results 
+        // <SearchComponent onSearch={this.getArticles} />
+        // <Articles data={data} />*/}
 
-      </div>
+   
     );
   }
+}
+
+function Home (props){
+  const homeStyle = {
+    background: `url(${bgImage}) center / cover`,
+    height: "100vh",
+  }
+  return (
+    <div style={homeStyle} >  
+      <div className='container container_home-search-btn'>
+        <div className="row">
+          <div className="three columns">
+              <SearchButton  />
+          </div>
+        </div>
+      </div>
+        
+      </div>
+    );
 }
 
 export default App;
