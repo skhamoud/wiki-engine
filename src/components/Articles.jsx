@@ -11,9 +11,13 @@ export default function Articles(props) {
         url={data.urls[current]}
       />);
   });
-  return <ul className="articles">
-    {articles}
-  </ul>;
+  return (
+    <div className="container">
+      <ul className="articles">
+        {articles}
+      </ul>
+    </div>
+    );
 }
 
 // ======== Article Component =================

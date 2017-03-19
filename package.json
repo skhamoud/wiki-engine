@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "node-sass": "^4.5.0",
     "react-router-dom": "^4.0.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "sass-lint": "^1.10.2"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -12,8 +14,10 @@
     "react-dom": "^15.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build-css": "node-sass src/ -o src/",
+    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+    "start": "react-scripts start ",
+    "build": "npm run build-css & react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
