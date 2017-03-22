@@ -3,7 +3,7 @@ import React from 'react';
 export default function Articles(props) {
   const data = props.data;
   const articles = data.titles.map((title, current) => {
-      return(
+    return(
       <Article
         key={`result-${current + 1}`}
         title={title}
@@ -11,9 +11,10 @@ export default function Articles(props) {
         url={data.urls[current]}
       />);
   });
+  
   return (
-    <div className="container">
-      <ul className="articles">
+    <div className="articles">
+      <ul className="articles-ul">
         {articles}
       </ul>
     </div>

@@ -27,7 +27,7 @@ class App extends React.Component {
         extracts: data[2],
         urls: data[3]
       });
-      console.log(this.state);
+      console.log(this.state.titles);
     });
   }
 
@@ -51,20 +51,22 @@ class App extends React.Component {
   render() {
     const data = this.state;
     return (
-        <div className="App">
-          <Route exact path='/' component={Home}/>
-          <Route path='/search' component={SearchComponent} />
-          <Route path="/articles" component={Articles} />
-        </div>
+      <div className="App" >
         
-        //  {/*Search results 
-        // <SearchComponent onSearch={this.getArticles} />
-        // <Articles data={data} />*/}
-
-   
+        <Route exact path='/' render={() => (
+          <Home onSearch={this.getArticles} />
+        )} />
+        
+        <Route path="/articles" render={() => (
+          <Articles data={data} />
+        )} />
+        
+      </div>
     );
   }
 }
+
+// ========== Home ===================
 
 function Home (props){
   const homeStyle = {
@@ -76,7 +78,7 @@ function Home (props){
       <div className='container container_home-search-btn'>
         <div className="row">
           <div className="three columns">
-              <SearchButton  />
+              <SearchComponent  onSearch={props.onSearch}/>
           </div>
         </div>
       </div>
@@ -84,5 +86,4 @@ function Home (props){
       </div>
     );
 }
-
 export default App;

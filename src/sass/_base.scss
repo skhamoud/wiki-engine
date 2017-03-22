@@ -1,7 +1,12 @@
+body {
+  padding: 0;
+  margin: 0;
+}
 .App {
   text-align: center;
 }
-
+.hidden{ display: none;}
+.visible{ display: block;}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -14,15 +19,8 @@
   color: white;
 }
 
-.App-intro {
-  font-size: large;
-}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 @keyframes hover {
-  from { transform: translate(0,0); }
-  to { transform: translate(0,2rem); }
+  from { transform: translate(0, 0); }
+  to { transform: translate(0, 2rem); }
 }

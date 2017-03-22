@@ -1,5 +1,15 @@
+body {
+  padding: 0;
+  margin: 0; }
+
 .App {
   text-align: center; }
+
+.hidden {
+  display: none; }
+
+.visible {
+  display: block; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -10,15 +20,6 @@
   height: 150px;
   padding: 20px;
   color: white; }
-
-.App-intro {
-  font-size: large; }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
 
 @keyframes hover {
   from {
@@ -32,3 +33,54 @@
 
 .search-btn_home {
   animation: hover infinite 2s ease-in-out alternate-reverse; }
+
+.searchbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; }
+
+.searchbox.visible {
+  display: block; }
+
+input.search-input {
+  position: relative;
+  background: none;
+  border: none;
+  border-radius: 1px;
+  border-bottom: solid 2px #A380CB;
+  color: #A380CB;
+  text-shadow: 0 0 0 #EBEBEB;
+  -webkit-text-fill-color: transparent;
+  width: 60%;
+  height: initial;
+  font-size: 2rem;
+  margin-top: 45vh;
+  padding-bottom: 4px; }
+
+input.search-input:-webkit-input-placeholder {
+  color: #d2d2d2; }
+
+input.search-input:-moz-placeholder {
+  color: #d2d2d2; }
+
+input.search-input:-ms-input-placeholder {
+  color: #d2d2d2; }
+
+input.search-input:focus {
+  border: none;
+  border-bottom: solid 2px #A380CB; }
+
+.modal-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6); }
+
+.search-btn {
+  cursor: pointer;
+  animation: hover 2s alternate infinite ease-in-out; }
