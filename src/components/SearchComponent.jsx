@@ -1,9 +1,12 @@
+// ============Modules==========
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-
+import { Route } from "react-router-dom";
+// ========components =========
+import TextInput from './TextInputComponent';
+// ================Assets============
 import btn from "../assets/search-btn.svg"
 
-
+// searchButton 
 const SearchButton = (props) => {
   return (
       <div className={`search-btn ${props.visible || ''}`} onClick={props.onClick} >
@@ -12,12 +15,15 @@ const SearchButton = (props) => {
 	);
 }
 
+// Modal
+const Modal = (props) => (
+	<div className="modal-bg" onClick={props.onClick || null} ></div>)
+
+// SearchComponent
 class SearchComponent extends Component {
   constructor(props) {
 		super(props); 
 		this.state = { modalVisible: false };
-		
-    this.handleSearch = this.handleSearch.bind(this);
 		this.handleButtonClick= this.handleButtonClick.bind(this);
   }
 	render() {
@@ -26,29 +32,19 @@ class SearchComponent extends Component {
 		return (
 			<div>
 				<SearchButton onClick={this.handleButtonClick} visible={searchButtonVisible} />
-				
+
 				<div className={`searchbox ${searchInputVisible}`} >
 					<Modal onClick={this.handleButtonClick}/>
-					<input type="text" name="search" placeholder="Article"
-							ref={input => this.searchTextInput = input}
-							onKeyPress={this.handleSearch}
-							className={`search-input`} />
+					<Route render={({ history }) => (
+						<TextInput onSearch={this.props.onSearch} navigateTo={history.push} />
+					)} />
 				</div>
-				
+
 			</div>);
   }
-  handleSearch(e) {
-    let term = this.searchTextInput.value || "";
-    if(e.key === "Enter" ) this.props.onSearch(term);
-
-	}
 	handleButtonClick() {
 		this.setState((prevState, props) => ({modalVisible:!prevState.modalVisible}))
-		console.log(this.state.modalVisible)
 	}
 }
-
-const Modal = (props) => (
-	<div className="modal-bg" onClick={props.onClick || null} ></div>)
-
 export default SearchComponent;
+

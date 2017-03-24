@@ -1,12 +1,13 @@
+// packages
 import React from 'react'
-import {Route, Link} from 'react-router-dom'
-import SearchComponent from './components/SearchComponent';
-import Articles from './components/Articles';
+import { Route } from 'react-router-dom'
+
+// Components and custom helpers
 import Api from "./api";
-import SearchButton from './components/SearchButton.jsx';
-// Assets 
-import logo from './logo.svg';
-import bgImage from './assets/books.jpg' ;
+import Home from './pages/Home';
+import Articles from './pages/Articles';
+
+// Assets and styles
 import './App.css';
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
     this.state = {
       titles : [ ] ,
       extracts:[] ,
-      urls:[]
+      urls: []
     };
     this.getArticles = this.getArticles.bind(this);
   }
@@ -27,7 +28,6 @@ class App extends React.Component {
         extracts: data[2],
         urls: data[3]
       });
-      console.log(this.state.titles);
     });
   }
 
@@ -50,40 +50,26 @@ class App extends React.Component {
   }
   render() {
     const data = this.state;
+    // console.log(data.hasResults && data);
     return (
       <div className="App" >
         
-        <Route exact path='/' render={() => (
-          <Home onSearch={this.getArticles} />
-        )} />
-        
-        <Route path="/articles" render={() => (
-          <Articles data={data} />
-        )} />
-        
+          <Route exact path='/' render={() => (
+            <Home onSearch={this.getArticles} />
+          )} />
+          <Route path="/articles" render={() => (
+            <Articles data={data} />
+          )} />
+          
       </div>
     );
   }
 }
+// TODO: 
+// HANDLE NO RESULTS
+// STYLE ARTICLES
+// ADD RANDOM BUTTON
+// 
 
-// ========== Home ===================
 
-function Home (props){
-  const homeStyle = {
-    background: `url(${bgImage}) center / cover`,
-    height: "100vh",
-  }
-  return (
-    <div style={homeStyle} >  
-      <div className='container container_home-search-btn'>
-        <div className="row">
-          <div className="three columns">
-              <SearchComponent  onSearch={props.onSearch}/>
-          </div>
-        </div>
-      </div>
-        
-      </div>
-    );
-}
 export default App;
