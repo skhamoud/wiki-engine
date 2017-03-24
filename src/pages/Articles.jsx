@@ -15,6 +15,7 @@ export default function Articles(props) {
   return (
     <div className="articles">
       <ul className="articles-ul">
+        <h2>Articles</h2>
         {articles}
       </ul>
     </div>
@@ -28,7 +29,7 @@ function Article (props) {
       <a href={props.url} target="_blank">
         <h3 className="article-title">{props.title}</h3>
       </a>
-      <p className='artile-extract'>{props.extract}</p>
+      <p className='article-extract'>{props.extract}</p>
     </li>);
 }
 

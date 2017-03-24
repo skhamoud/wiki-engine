@@ -8,16 +8,17 @@
   &.visible{
     display: block}
 }
-input.search-input{
+.search-input{
   position: relative;
   background: none;
   border: none;
   border-radius: 1px;
   border-bottom: solid 2px $lighter-accent;
+  outline: none;
   color: $lighter-accent;
   text-shadow: 0 0 0 $secondary;
   -webkit-text-fill-color: transparent;
-  width: 60%;
+  width: 80%;
   height: initial;
   font-size: 2rem;
   margin-top: 45vh;
@@ -41,4 +42,11 @@ input.search-input{
 .search-btn {
   cursor: pointer;
   animation: hover 2s alternate infinite ease-in-out;
+  width: 30vh;
+  position: absolute;
+  top: 25vh;
+  left: 2vw;
+  @media (min-width: 820px) {
+    left: 18vw;
+  }
 }

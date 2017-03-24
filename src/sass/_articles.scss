@@ -1,0 +1,23 @@
+.articles {
+  padding: 10px 10vw;
+}
+.articles-ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.article {
+  box-shadow: 0 2px 2px $shadow-1;
+  margin-top: 30px;
+}
+.article-title {
+  background: $secondary;
+  color: $accent;
+  margin-top: 0;
+  padding: 10px 15px;
+  text-align: left;
+}
+.article-extract {
+  padding: 20px;
+}
