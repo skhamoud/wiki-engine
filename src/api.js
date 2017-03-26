@@ -9,7 +9,8 @@ export default {
     }
     return fetch(endpoint, init)
       .then((res => res.json())) // strips body data into next promise
-      .then(json => json);
+      .then(json => json)
+      .catch(err => console.error(err))
 
     // Axios module 
 
@@ -24,6 +25,10 @@ export default {
     //   }
     // })
 
+  },
+  errors: {
+    network: "There seems to be a network problem, Try again later!",
+    noResults: "Sorry, no related articles found."
   },
   dummyData: [
     "javascript", [

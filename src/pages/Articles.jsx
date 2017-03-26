@@ -20,7 +20,7 @@ export default function Articles(props) {
         onSearch={props.fetchArticles}
         btnContainer="search-btn_articles"
       />
-      {(data.titles[0]) ?
+      {(!data.errorMsg) ?
         <div>
           <h1>Articles</h1>
 
@@ -28,7 +28,7 @@ export default function Articles(props) {
             {articles}
           </ul>
         </div>  
-        : <h2 style={{color:"#E57373",marginTop:'100px'}}>Sorry, there were no Results!</h2>
+        : <h2 style={{color:"#E57373",marginTop:'100px'}}>{data.errorMsg}</h2>
       }
     </div>
     );
