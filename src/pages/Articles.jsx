@@ -1,4 +1,6 @@
 import React from 'react';
+import SearchComponent from '../components/SearchComponent';
+
 //========= Articles Component =================
 export default function Articles(props) {
   const data = props.data;
@@ -14,8 +16,16 @@ export default function Articles(props) {
   
   return (
     <div className="articles">
+      <h1>Articles</h1>
+
+      {/*Search btn*/}
+      <SearchComponent
+        onSearch={props.fetchArticles}
+        btnContainer="search-btn_articles"
+      />
+
+      {/* Search Results*/}
       <ul className="articles-ul">
-        <h2>Articles</h2>
         {articles}
       </ul>
     </div>
@@ -23,7 +33,7 @@ export default function Articles(props) {
 }
 
 // ======== Article Component =================
-function Article (props) {
+const Article = (props) => {
   return (
     <li className="article">
       <a href={props.url} target="_blank">

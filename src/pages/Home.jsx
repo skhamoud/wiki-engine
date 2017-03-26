@@ -5,7 +5,6 @@ import SearchComponent from '../components/SearchComponent';
 // ========Assets==================
 import bgImage from '../assets/books.jpg' ;
 
-
 const Home = (props)=>  {
   const homeStyle = {
     background: `url(${bgImage}) center / cover`,
@@ -13,7 +12,10 @@ const Home = (props)=>  {
   }
   return (
     <div style={homeStyle} >  
-      <SearchComponent  onSearch={props.onSearch}/>
+      <SearchComponent
+        onSearch={props.fetchArticles}
+        btnContainer="search-btn_home"
+      />
     </div>
     );
 }

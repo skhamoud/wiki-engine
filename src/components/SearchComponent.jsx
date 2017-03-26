@@ -1,50 +1,61 @@
-// ============Modules==========
+// ============Modules==================
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-// ========components =========
+// ========components ===================
 import TextInput from './TextInputComponent';
-// ================Assets============
-import btn from "../assets/search-btn.svg"
+import SearchButton from './SearchButton';
 
-// searchButton 
-const SearchButton = (props) => {
-  return (
-      <div className={`search-btn ${props.visible || ''}`} onClick={props.onClick} >
-        <img src={btn} alt="searchButton"  />
-      </div>
-	);
-}
 
-// Modal
-const Modal = (props) => (
-	<div className="modal-bg" onClick={props.onClick || null} ></div>)
 
-// SearchComponent
+// ==============SearchComponent==============
+// needs 2 props:
+// - onSearch: function
+// - btnContainer: className for page spefic container of the btn
+
 class SearchComponent extends Component {
   constructor(props) {
 		super(props); 
 		this.state = { modalVisible: false };
-		this.handleButtonClick= this.handleButtonClick.bind(this);
-  }
+		this.toggleModal = this.toggleModal.bind(this);
+	}
+	
 	render() {
 		const searchInputVisible = this.state.modalVisible ? 'visible' : 'hidden';
 		const searchButtonVisible = this.state.modalVisible ? 'hidden' : 'visible';
 		return (
 			<div>
-				<SearchButton onClick={this.handleButtonClick} visible={searchButtonVisible} />
+				<SearchButton
+					onClick={this.toggleModal}
+					visible={searchButtonVisible}
+					btnContainer={this.props.btnContainer||''}
+				/>
 
 				<div className={`searchbox ${searchInputVisible}`} >
-					<Modal onClick={this.handleButtonClick}/>
+					<Modal onClick={this.toggleModal} />
+					
+					{/*Wrap TextInput in router to pass history to it*/}
 					<Route render={({ history }) => (
-						<TextInput onSearch={this.props.onSearch} navigateTo={history.push} />
+						<TextInput onSearch={this.props.onSearch}
+							navigateTo={(place) => {
+							history.push(place)
+							this.setState({modalVisible:false})
+						}} />
 					)} />
 				</div>
 
 			</div>);
-  }
-	handleButtonClick() {
+	}
+	
+	toggleModal() {
 		this.setState((prevState, props) => ({modalVisible:!prevState.modalVisible}))
 	}
 }
-export default SearchComponent;
 
+// ===============Modal====================
+/**
+ * needs onClick prop : function that fires when you click anywhere in modal
+ *  
+ */
+const Modal = (props) => <div className="modal-bg" onClick={props.onClick || null} ></div>;
+
+export default SearchComponent;
