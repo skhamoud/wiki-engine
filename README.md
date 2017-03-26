@@ -4,7 +4,7 @@ Search any topic for wikipedia articles . A FCC challenge
 
  * To run server ``` npm run watch-css``` and `npm start` or `yarn start` server is at localhost:3000
 
- * To build `npm run build-css && npm run build `
+ * To build `npm build` or `yarn build`
 
 --------
 
