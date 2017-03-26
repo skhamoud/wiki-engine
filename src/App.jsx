@@ -1,12 +1,12 @@
 // packages
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 // Components and custom helpers
 import Api from "./api";
 import Home from './pages/Home';
 import Articles from './pages/Articles';
-
+import NotFound from './pages/NotFound';
 // Assets and styles
 import './App.css';
 
@@ -50,24 +50,22 @@ class App extends React.Component {
   }
   render() {
     const data = this.state;
-    // console.log(data.hasResults && data);
     return (
       <div className="App" >
-        
+        <Switch>
           <Route exact path='/' render={() => (
             <Home fetchArticles={this.getArticles} />
           )} />
           <Route path="/articles" render={() => (
             <Articles data={data} fetchArticles={this.getArticles}/>
           )} />
-          
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }
 }
 // TODO: 
-// HANDLE NO RESULTS
-// STYLE ARTICLES
 // ADD RANDOM BUTTON
 // 
 

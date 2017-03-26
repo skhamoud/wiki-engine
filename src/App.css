@@ -139,3 +139,16 @@ a {
 .article-extract {
   margin: 0;
   padding: 20px; }
+
+.not-found {
+  max-width: 90vw;
+  margin: 100px auto;
+  padding: 20vh 20px;
+  background: #d7c8e9;
+  border-radius: 3px; }
+
+.not-found a {
+  padding: 8px 20px;
+  border: 1px solid #715497;
+  border-radius: 3px;
+  margin: 50px 0; }
