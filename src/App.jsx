@@ -35,12 +35,12 @@ class App extends React.Component {
   componentWillMount() {
     // while offline use dummyData
 
-    let data = Api.dummyData;
-    this.setState({
-      titles: data[1],
-      extracts: data[2],
-      urls: data[3]
-    });
+    // let data = Api.dummyData;
+    // this.setState({
+    //   titles: data[1],
+    //   extracts: data[2],
+    //   urls: data[3]
+    // });
   }
   componentDidMount() {
     

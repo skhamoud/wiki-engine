@@ -16,18 +16,20 @@ export default function Articles(props) {
   
   return (
     <div className="articles">
-      <h1>Articles</h1>
-
-      {/*Search btn*/}
       <SearchComponent
         onSearch={props.fetchArticles}
         btnContainer="search-btn_articles"
       />
+      {(data.titles[0]) ?
+        <div>
+          <h1>Articles</h1>
 
-      {/* Search Results*/}
-      <ul className="articles-ul">
-        {articles}
-      </ul>
+          <ul className="articles-ul">
+            {articles}
+          </ul>
+        </div>  
+        : <h2 style={{color:"#E57373",marginTop:'100px'}}>Sorry, there were no Results!</h2>
+      }
     </div>
     );
 }
