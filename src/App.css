@@ -35,7 +35,16 @@ a {
   padding-top: 25vh; }
 
 .search-btn_home {
-  animation: hover infinite 2s ease-in-out alternate-reverse; }
+  animation: hover infinite 2s ease-in-out alternate-reverse;
+  animation: hover 2s alternate infinite ease-in-out;
+  width: 30vh;
+  position: absolute;
+  top: 25vh;
+  left: 2vw; }
+
+@media (min-width: 820px) {
+  .search-btn_home {
+    left: 18vw; } }
 
 .searchbox {
   display: none;
@@ -86,35 +95,47 @@ a {
   background: rgba(0, 0, 0, 0.6); }
 
 .search-btn {
-  cursor: pointer;
-  animation: hover 2s alternate infinite ease-in-out;
-  width: 30vh;
-  position: absolute;
-  top: 25vh;
-  left: 2vw; }
-
-@media (min-width: 820px) {
-  .search-btn {
-    left: 18vw; } }
+  cursor: pointer; }
 
 .articles {
-  padding: 10px 10vw; }
+  padding: 10px;
+  position: relative; }
+
+.articles h1 {
+  text-align: left;
+  color: #95989A; }
+
+@media (min-width: 800px) {
+  .articles h1 {
+    text-align: center; } }
+
+.search-btn_articles {
+  width: 3em;
+  position: absolute;
+  top: 4vh;
+  right: 20px; }
 
 .articles-ul {
   list-style: none;
   margin: 0 auto;
-  padding: 0; }
+  padding: 0 3vw; }
+
+@media (min-width: 850px) {
+  .articles-ul {
+    padding: 0 20vw; } }
 
 .article {
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-  margin-top: 30px; }
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-top: 35px;
+  text-align: left; }
 
 .article-title {
   background: #EBEBEB;
   color: #715497;
-  margin-top: 0;
+  margin: 0;
   padding: 10px 15px;
   text-align: left; }
 
 .article-extract {
+  margin: 0;
   padding: 20px; }

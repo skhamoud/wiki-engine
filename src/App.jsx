@@ -35,12 +35,12 @@ class App extends React.Component {
   componentWillMount() {
     // while offline use dummyData
 
-    // let data = Api.dummyData;
-    // this.setState({
-    //   titles: data[1],
-    //   extracts: data[2],
-    //   urls: data[3]
-    // });
+    let data = Api.dummyData;
+    this.setState({
+      titles: data[1],
+      extracts: data[2],
+      urls: data[3]
+    });
   }
   componentDidMount() {
     
@@ -55,10 +55,10 @@ class App extends React.Component {
       <div className="App" >
         
           <Route exact path='/' render={() => (
-            <Home onSearch={this.getArticles} />
+            <Home fetchArticles={this.getArticles} />
           )} />
           <Route path="/articles" render={() => (
-            <Articles data={data} />
+            <Articles data={data} fetchArticles={this.getArticles}/>
           )} />
           
       </div>

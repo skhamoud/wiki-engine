@@ -41,12 +41,4 @@
 }
 .search-btn {
   cursor: pointer;
-  animation: hover 2s alternate infinite ease-in-out;
-  width: 30vh;
-  position: absolute;
-  top: 25vh;
-  left: 2vw;
-  @media (min-width: 820px) {
-    left: 18vw;
-  }
 }
