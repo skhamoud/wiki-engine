@@ -8,14 +8,23 @@ a {
   //   color: default;
   // }
 }
+
 .App {
   text-align: center;
 }
 .hidden{ display: none;}
 .visible{ display: block;}
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+
+.btn {
+  color: white;
+  background: $accent;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0,0,0, .6);
+  &:hover{
+    background: lighten($accent,10%) ;
+  }
 }
 
 .App-header {

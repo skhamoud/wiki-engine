@@ -2,26 +2,36 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 // ========components ===================
+import Api from '../api';
 import TextInput from './TextInputComponent';
 import SearchButton from './SearchButton';
+
 
 
 
 // ==============SearchComponent==============
 // needs 2 props:
 // - onSearch: function
-// - btnContainer: className for page spefic container of the btn
+// - btnContainer: className for page spefic container of the search btn
 
 class SearchComponent extends Component {
   constructor(props) {
 		super(props); 
-		this.state = { modalVisible: false };
+		this.state = { modalVisible: false , randomArticlesUrls: []};
 		this.toggleModal = this.toggleModal.bind(this);
+		this.getRandomArticles = this.getRandomArticles.bind(this);
+	}
+	componentWillMount() {
+		this.getRandomArticles()
 	}
 	
 	render() {
-		const searchInputVisible = this.state.modalVisible ? 'visible' : 'hidden';
+		// toggle modal and search button visibility
+		const isModalVisible = this.state.modalVisible ? 'visible' : 'hidden';
 		const searchButtonVisible = this.state.modalVisible ? 'hidden' : 'visible';
+		// random article Button stuff 
+		const randomArticles = this.state.randomArticlesUrls;
+		const randomArticle = randomArticles[Math.floor(Math.random() * randomArticles.length)];
 		return (
 			<div>
 				<SearchButton
@@ -30,7 +40,7 @@ class SearchComponent extends Component {
 					btnContainer={this.props.btnContainer||''}
 				/>
 
-				<div className={`searchbox ${searchInputVisible}`} >
+				<div className={`searchbox ${isModalVisible}`} >
 					<Modal onClick={this.toggleModal} />
 					
 					{/*Wrap TextInput in router to pass history to it*/}
@@ -38,12 +48,21 @@ class SearchComponent extends Component {
 						<TextInput onSearch={this.props.onSearch}
 							navigateTo={(place) => {
 							history.push(place)
-							this.setState({modalVisible:false})
+							this.setState({modalVisible:false}) // Land on modal hidden
 						}} />
 					)} />
+					<RandomButton url={randomArticle} />
 				</div>
 
 			</div>);
+	}
+	
+	getRandomArticles() {
+		let articleUrls = [];
+		Api.fetchRandom().then(data => {
+			data.query.pages.forEach(article => articleUrls.push(article.fullurl));
+			this.setState({ randomArticlesUrls: articleUrls })
+		}).catch(console.error);
 	}
 	
 	toggleModal() {
@@ -57,5 +76,12 @@ class SearchComponent extends Component {
  *  
  */
 const Modal = (props) => <div className="modal-bg" onClick={props.onClick || null} ></div>;
+
+
+// ======= Random Button =======================
+/**
+ * props.url : string => url of random article
+ */
+const RandomButton = (props) => (<a href={props.url} className="btn random-btn">Random</a>);
 
 export default SearchComponent;

@@ -1,30 +1,18 @@
-// import Axios from 'axios';
 export default {
+  // Search for str in wikipedia
   wikiSearch(str) {
     let endpoint = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&limit=10&search=${str}&format=json`;
 
-    // Native fetch Api 
-    const init = { // for config object if needed
-      format: 'json'
-    }
-    return fetch(endpoint, init)
+    return fetch(endpoint)
       .then((res => res.json())) // strips body data into next promise
       .then(json => json)
       .catch(err => console.error(err))
-
-    // Axios module 
-
-    // return Axios.get(endpoint, { 
-    //   params: { //url params
-    //     origin: '*',
-    //     action: 'opensearch',
-    //     search: str,
-    //     limit: 10,
-    //     namespace:0,
-    //     format:'json'
-    //   }
-    // })
-
+  },
+  
+  // fetch 10 random articles
+  fetchRandom() {
+    let endpoint = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=info&generator=random&grnlimit=10&formatversion=latest&inprop=url&grnnamespace=0`;
+    return fetch(endpoint).then(data=>data.json());
   },
   errors: {
     network: "There seems to be a network problem, Try again later!",

@@ -14,9 +14,16 @@ a {
 .visible {
   display: block; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
+.btn {
+  color: white;
+  background: #715497;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.6); }
+
+.btn:hover {
+  background: #8b6faf; }
 
 .App-header {
   background-color: #222;
@@ -94,6 +101,11 @@ a {
 
 .search-btn {
   cursor: pointer; }
+
+.random-btn {
+  position: absolute;
+  bottom: 1em;
+  right: 2em; }
 
 .articles {
   padding: 10px;
