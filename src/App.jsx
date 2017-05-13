@@ -51,7 +51,6 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={() => (
             <Home fetchArticles={this.getArticles} />
-
           )} />
           <Route exact path="/articles" render={() => (
             <Articles data={data} fetchArticles={this.getArticles}/>

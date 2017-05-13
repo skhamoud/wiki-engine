@@ -6,9 +6,6 @@ import Api from '../api';
 import TextInput from './TextInputComponent';
 import SearchButton from './SearchButton';
 
-
-
-
 // ==============SearchComponent==============
 // needs 2 props:
 // - onSearch: function
@@ -17,21 +14,27 @@ import SearchButton from './SearchButton';
 class SearchComponent extends Component {
   constructor(props) {
 		super(props); 
-		this.state = { modalVisible: false , randomArticlesUrls: []};
+		this.state = { modalVisible: false , randomArticleUrl:""};
 		this.toggleModal = this.toggleModal.bind(this);
-		this.getRandomArticles = this.getRandomArticles.bind(this);
+		this.getRandomArticle = this.getRandomArticle.bind(this);
 	}
-	componentWillMount() {
-		this.getRandomArticles()
+	componentDidMount() {
+		this.getRandomArticle()
 	}
-	
+	getRandomArticle() {
+		Api.fetchRandom().then(data => {
+			const articles = data.query.pages;
+			let randomArticle = articles[Math.floor(Math.random()*articles.length)]
+			this.setState({ randomArticleUrl: randomArticle.fullurl })
+		}).catch(console.warn);
+	}
 	render() {
 		// toggle modal and search button visibility
 		const isModalVisible = this.state.modalVisible ? 'visible' : 'hidden';
 		const searchButtonVisible = this.state.modalVisible ? 'hidden' : 'visible';
+
 		// random article Button stuff 
-		const randomArticles = this.state.randomArticlesUrls;
-		const randomArticle = randomArticles[Math.floor(Math.random() * randomArticles.length)];
+		const randomArticleUrl = this.state.randomArticleUrl;
 		return (
 			<div>
 				<SearchButton
@@ -51,19 +54,13 @@ class SearchComponent extends Component {
 							this.setState({modalVisible:false}) // Land on modal hidden
 						}} />
 					)} />
-					<RandomButton url={randomArticle} />
+					<RandomButton url={randomArticleUrl} />
 				</div>
 
 			</div>);
 	}
 	
-	getRandomArticles() {
-		let articleUrls = [];
-		Api.fetchRandom().then(data => {
-			data.query.pages.forEach(article => articleUrls.push(article.fullurl));
-			this.setState({ randomArticlesUrls: articleUrls })
-		}).catch(console.error);
-	}
+
 	
 	toggleModal() {
 		this.setState((prevState, props) => ({modalVisible:!prevState.modalVisible}))
